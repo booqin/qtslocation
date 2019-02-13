@@ -13,28 +13,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
   String _location = 'Unknown';
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    getLocation();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    
+  Future<void> getLocation() async {
     AMapLocation locationBean;
-    // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await Qtslocation.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    try {
+      // 获取位置
       locationBean = await Qtslocation.location;
       print(locationBean.toString());
     } on PlatformException {
@@ -47,7 +37,6 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
       _location = locationBean == null ?"error":locationBean.lat.toString();
     });
   }

@@ -1,3 +1,7 @@
+## 0.0.2
+
+* 修复bean中double类型转换的异常
+
 ## 0.0.1
 
-* TODO: Describe initial release.
+* 可获取定位到初始版
