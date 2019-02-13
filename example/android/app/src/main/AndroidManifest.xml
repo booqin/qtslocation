@@ -38,5 +38,10 @@
         <activity
             android:theme="@style/LaunchTheme"
             android:name=".FlutterMainActivity" />
+
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="${map_app_key}" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
     </application>
 </manifest>
