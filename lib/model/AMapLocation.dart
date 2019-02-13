@@ -23,8 +23,8 @@ class AMapLocation {
   String description;
   int time;
   String provider;
-  double lon;
-  double lat;
+  String lon;
+  String lat;
   int accuracy;
   bool isOffset;
   bool isFixLastLocation;
@@ -61,9 +61,9 @@ class AMapLocation {
         this.isFixLastLocation});
 
   AMapLocation.fromJson(Map<String, dynamic> json) {
-    altitude = json['altitude'];
-    speed = json['speed'];
-    bearing = json['bearing'];
+    altitude = json['altitude'] as int;
+    speed = json['speed'] as int;
+    bearing = json['bearing'] as int;
     citycode = json['citycode'];
     adcode = json['adcode'];
     country = json['country'];
@@ -74,22 +74,23 @@ class AMapLocation {
     street = json['street'];
     number = json['number'];
     poiname = json['poiname'];
-    errorCode = json['errorCode'];
+    errorCode = json['errorCode']as int;
     errorInfo = json['errorInfo'];
-    locationType = json['locationType'];
+    locationType = json['locationType'] as int;
     locationDetail = json['locationDetail'];
     aoiname = json['aoiname'];
     address = json['address'];
     poiid = json['poiid'];
     floor = json['floor'];
     description = json['description'];
-    time = json['time'];
+    time = json['time'] as int;
     provider = json['provider'];
-    lon = json['lon'];
-    lat = json['lat'];
-    accuracy = json['accuracy'];
-    isOffset = json['isOffset'];
-    isFixLastLocation = json['isFixLastLocation'];
+    //double会有转换异常（0的时候为int），这里使用string来处理
+    lon = json['lon'].toString();
+    lat = json['lat'].toString();
+    accuracy = json['accuracy'] as int;
+    isOffset = json['isOffset'] as bool;
+    isFixLastLocation = json['isFixLastLocation'] as bool;
   }
 
   Map<String, dynamic> toJson() {
